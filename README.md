@@ -18,18 +18,18 @@ NodeJS, NestJS, MongoDB
 ## To-do 
 
 ### Boilerplate
--Front-End
--Back-End
+-Front-End: Excalidraw
+-Back-End: Excalidraw
 
 ### Front-End
--Design
+-Design: AI
 -HTML
 -Reactjs
 -Tailwindcss
 
 ### Back-End
--Design
--Documentation
+-Design: Excalidraw
+-Documentation: Excalidraw
 -NodeJS
 -NestJS
 
