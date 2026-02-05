@@ -2,8 +2,8 @@ import React from 'react';
 
 type Props = {};
 
-function DashboardPage({}: Props) {
+const DashboardPage = (props: Props) => {
     return <div>DashboardPage</div>;
-}
+};
 
 export default DashboardPage;
