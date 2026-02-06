@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Icons from '@global/assets/icon';
-import WorkspacesComponent from '../components/WorkspacesComponent';
+import BoardsComponent from '../components/BoardsComponent';
 
 type Props = {};
 
@@ -27,7 +27,7 @@ const DATAMOCKUP = {
             owner: 'George Villarroel',
         },
     ],
-    spaces: [
+    boards: [
         {
             name: 'George Villarroel',
             icon: Icons.DefaultIcon0,
@@ -51,20 +51,17 @@ const DATAMOCKUP = {
     ],
 };
 
-const DashboardPage = (props: Props) => {
+const WorkspacesPage = (props: Props) => {
     return (
         <div className="bg-black w-screen h-screen flex flex-col justify-between p-4 ">
             <section className="w-full h-36 bg-white "></section>
-            <WorkspacesComponent
+            <BoardsComponent
                 heading="Recently watched"
-                spaces={DATAMOCKUP.watched}
+                boards={DATAMOCKUP.watched}
             />
-            <WorkspacesComponent
-                heading="All workspaces"
-                spaces={DATAMOCKUP.spaces}
-            />
+            <BoardsComponent heading="All Boards" boards={DATAMOCKUP.boards} />
         </div>
     );
 };
 
-export default DashboardPage;
+export default WorkspacesPage;

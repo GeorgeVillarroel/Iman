@@ -5,9 +5,9 @@ import AuthPage from '@features/auth/pages/AuthPage';
 import ProfilePage from '@features/profile/pages/ProfilePage';
 import SettingsPage from '@features/settings/pages/SettingsPage';
 import BoardPage from '@features/board/pages/BoardPage';
-import DashboardPage from '@features/dashboard/pages/DashboardPage';
 import LandingPage from '@features/landing/pages/LandingPage';
-import SpacePage from '@features/workspace/pages/SpacePage';
+import WorkspacePage from '@features/workspace/pages/WorkspacePage';
+import DashboardPage from '@features/dashboard/pages/DashboardPage';
 
 function App() {
     return (
@@ -17,8 +17,14 @@ function App() {
                 <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
                 <Route path={ROUTES.SETTINGS} element={<SettingsPage />} />
                 <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
-                <Route path={ROUTES.WORKSPACE} element={<SpacePage />} />
-                <Route path={ROUTES.BOARD} element={<BoardPage />} />
+                <Route
+                    path={`${ROUTES.WORKSPACE}/:spaceName`}
+                    element={<WorkspacePage />}
+                />
+                <Route
+                    path={`${ROUTES.BOARD}/:boardName`}
+                    element={<BoardPage />}
+                />
                 <Route path={ROUTES.HOME} element={<AuthPage />} />
                 <Route path={ROUTES.NOT_FOUND} element={<LandingPage />} />
             </Routes>

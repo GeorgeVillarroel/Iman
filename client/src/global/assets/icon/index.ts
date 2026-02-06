@@ -1,0 +1,15 @@
+export { default as DefaultIcon0 } from './default0-96.png';
+export { default as DefaultIcon1 } from './default1-96.png';
+export { default as DefaultIcon2 } from './default2-96.png';
+export { default as DefaultIcon3 } from './default3-96.png';
+export { default as DefaultIcon4 } from './default4-96.png';
+export { default as DefaultIcon5 } from './default5-96.png';
+export { default as DefaultIcon6 } from './default6-96.png';
+export { default as DefaultIcon7 } from './default7-96.png';
+export { default as DefaultIcon8 } from './default8-96.png';
+export { default as DefaultIcon9 } from './default9-96.png';
+export { default as DefaultIcon10 } from './default10-96.png';
+export { default as DefaultIcon11 } from './default11-96.png';
+export { default as DefaultIcon12 } from './default12-96.png';
+export { default as DefaultIcon13 } from './default13-96.png';
+export { default as DefaultIcon14 } from './default14-96.png';

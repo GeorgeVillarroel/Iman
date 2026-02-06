@@ -1,18 +1,343 @@
 @import 'tailwindcss';
 
-:root {
-    /* 
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+html,
+body,
+#root {
+    min-height: 100%;
+    color: var(--color-neutral-50);
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@theme {
+    --font-sans: 'Play', ui-sans-serif, system-ui, sans-serif;
+    --font-Play: 'Play';
+    --font-family-secondary: 'Play';
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
- */
+    --font-size-48: 48px;
+    --font-size-40: 40px;
+    --font-size-32: 32px;
+    --font-size-24: 24px;
+    --font-size-18: 18px;
+    --font-size-16: 16px;
+    --font-size-14: 14px;
+    --font-size-12: 12px;
+    --font-size-10: 10px;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-100: 100%;
+    --line-height-130: 130%;
+    --line-height-150: 150%;
+
+    --letter-spacing-0: 0px;
+    --letter-spacing-50: -0.5px;
+    --letter-spacing-100: -1px;
+    --letter-spacing-150: -1.5px;
+    --letter-spacing-200: -2px;
+    --letter-spacing-300: -3px;
+
+    --text-decoration-none: none;
+    --text-decoration-underline: underline;
+    --text-decoration-strikethrough: line-through;
+
+    --color-neutral-50: #ffffff;
+    --color-neutral-100: #f8f8f8;
+    --color-neutral-200: #cacaca;
+    --color-neutral-300: #535353;
+    --color-neutral-400: #2c2c2c;
+    --color-neutral-500: #1f1f1f;
+    --color-neutral-900: #000000;
+
+    --color-primary-50: #ffd0d7;
+    --color-primary-200: #ff8da4;
+    --color-primary-500: #ff2d74;
+    --color-primary-600: #751d34;
+    --color-primary-700: #3d111b;
+    --color-primary-900: #170e0f;
+
+    --color-secondary-50: #fdf2ff;
+    --color-secondary-200: #f3caff;
+    --color-secondary-500: #c826ff;
+    --color-secondary-600: #970ebd;
+    --color-secondary-700: #7e0e9a;
+    --color-secondary-900: #460055;
+
+    --color-red-50: #fff7f6;
+    --color-red-200: #f63131;
+    --color-red-500: #ff263c;
+    --color-red-800: #900c19;
+    --color-red-900: #500008;
+
+    --color-orange-50: #fff8e7;
+    --color-orange-200: #f7d152;
+    --color-orange-500: #ee9d11;
+    --color-orange-800: #8e4212;
+    --color-orange-900: #431b05;
+
+    --color-blue-50: #f5f9ff;
+    --color-blue-200: #9ac1ff;
+    --color-blue-500: #146bfd;
+    --color-blue-800: #1143bc;
+    --color-blue-900: #11265a;
+
+    --color-skyblue-50: #effbff;
+    --color-skyblue-200: #75e3ff;
+    --color-skyblue-500: #00c8ff;
+    --color-skyblue-800: #00688d;
+    --color-skyblue-900: #04374d;
+
+    --color-violet-50: #f1f0ff;
+    --color-violet-200: #bbb3ff;
+    --color-violet-500: #6e1aff;
+    --color-violet-800: #5812c5;
+    --color-violet-900: #28076e;
+
+    --color-pink-50: #ffe7f8;
+    --color-pink-200: #f2a4d8;
+    --color-pink-500: #ff27d0;
+    --color-pink-800: #9a0e74;
+    --color-pink-900: #55003c;
+
+    --color-green-50: #e2f9e9;
+    --color-green-200: #71d697;
+    --color-green-500: #24d07b;
+    --color-green-800: #16653f;
+    --color-green-900: #052e1c;
+}
+
+h1 {
+    @apply text-5xl font-semibold leading-[100%] -tracking-[1.5px];
+}
+
+h2 {
+    @apply text-4xl font-semibold leading-[110%] -tracking-[0.5px];
+}
+
+h3 {
+    @apply text-3xl font-semibold leading-[115%] -tracking-[0.25px];
+}
+
+h4 {
+    @apply text-2xl font-semibold leading-[120%] tracking-normal;
+}
+
+h5 {
+    @apply text-xl font-semibold leading-[125%] tracking-normal;
+}
+
+h6 {
+    @apply text-lg font-semibold leading-[130%] tracking-normal;
+}
+
+/* Estilos para Form*/
+.font-form-large {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-130);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-form-normal {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-130);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-form-small {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-130);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+/* Estilos para Action*/
+.font-action-large {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-action-normal {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-action-small {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+/* Estilos para Link */
+.font-link-large {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-130);
+    letter-spacing: var(--letter-spacing-100);
+    text-decoration: var(--text-decoration-underline);
+}
+
+.font-link-normal {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-130);
+    letter-spacing: var(--letter-spacing-100);
+    text-decoration: var(--text-decoration-underline);
+}
+
+.font-link-small {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-130);
+    letter-spacing: var(--letter-spacing-100);
+    text-decoration: var(--text-decoration-underline);
+}
+
+/* Estilos para Body */
+.font-body-large-regular {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-body-large-medium {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-body-normal-regular {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-body-normal-medium {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-110);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-body-small-regular {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-body-small-medium {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-body-extrasmall-regular {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+.font-body-extrasmall-medium {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-50);
+    text-decoration: var(--text-decoration-none);
+}
+
+/* Styles containers */
+.bg-gradient-primary-neutral-secondary {
+    @apply bg-linear-to-br from-primary-600 via-neutral-500/30 to-secondary-700/80;
+}
+
+.special-rounded {
+    @apply rounded-br-3xl rounded-tl-3xl rounded-tr-lg rounded-bl-lg;
+}
+
+/* Team Button */
+.btn-gradient-border {
+    border: 2px solid transparent;
+    background:
+        linear-gradient(var(--color-neutral-900), var(--color-neutral-900))
+            padding-box,
+        linear-gradient(
+                to bottom,
+                var(--color-primary-500),
+                var(--color-secondary-500)
+            )
+            border-box;
+}
+
+.custom-shadow {
+    box-shadow: 0px 0px 16px 0px var(--color-secondary-900);
+}
+
+.filter-primary-500 {
+    filter: brightness(0) saturate(100%) invert(38%) sepia(65%) saturate(2543%)
+        hue-rotate(321deg) brightness(97%) contrast(101%);
+}
+
+html body {
+    /* Global scrollbar styling (WebKit) */
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    /* Inputs Style to autofill */
+    input:-webkit-autofill {
+        -webkit-text-fill-color: #f3f3f3 !important;
+        /* o el color real que usas en dark */
+        caret-color: #f3f3f3 !important;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
 }
