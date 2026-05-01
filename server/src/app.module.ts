@@ -13,7 +13,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from 'src/config/configuration';
 import { validate } from 'env.validation';
 import { join } from 'path';
-
+import { SessionsModule } from './modules/sessions/sessions.module';
+import { ProfileModule } from './modules/profile/profile.module';
+import { SettingsModule } from './modules/settings/settings.module';
+import { BoardMembersModule } from './modules/board-members/board-members.module';
 @Module({
   imports: [
     UsersModule,
@@ -34,9 +37,16 @@ import { join } from 'path';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         uri: config.get<string>('database.uri'),
+        autoIndex: true,
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 5000,
       }),
     }),
     CardsModule,
+    ProfileModule,
+    SettingsModule,
+    SessionsModule,
+    BoardMembersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

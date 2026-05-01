@@ -1,34 +1,66 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { BoardsService } from './boards.service';
-import { CreateBoardDto } from './dto/create-board.dto';
-import { UpdateBoardDto } from './dto/update-board.dto';
+import { CreateBoardDTO } from './dto/create-board.dto';
+import { UpdateBoardDTO } from './dto/update-board.dto';
+import { PayloadUser } from 'src/common/decorators/user.decorator';
+import { JwtAuthGuard } from 'src/common/guards/jwt.guard';
+import {
+  BoardRolesGuard,
+  WorkspaceRolesGuard,
+} from 'src/common/guards/roles.guard';
+import { ERole } from 'src/common/interfaces/shared.interfaces';
+import { WorkspaceRoles } from 'src/common/decorators/space-role.decorator';
+import { BoardRoles } from 'src/common/decorators/board-role.decorator';
 
-@Controller('boards')
+@Controller('w/:w/boards')
+@UseGuards(JwtAuthGuard, WorkspaceRolesGuard, BoardRolesGuard)
 export class BoardsController {
-  constructor(private readonly boardsService: BoardsService) {}
+  constructor(private readonly boardService: BoardsService) {}
 
   @Post()
-  create(@Body() createBoardDto: CreateBoardDto) {
-    return this.boardsService.create(createBoardDto);
+  @WorkspaceRoles(ERole.OWNER, ERole.ADMIN, ERole.MEMBER)
+  create(
+    @Param('w') workspaceId: string,
+    @PayloadUser('userId') userId: string,
+    @Body() createBoardDTO: CreateBoardDTO,
+  ) {
+    return this.boardService.create(userId, workspaceId, createBoardDTO);
   }
 
   @Get()
-  findAll() {
-    return this.boardsService.findAll();
+  @WorkspaceRoles(ERole.OWNER, ERole.ADMIN, ERole.MEMBER)
+  findAll(@Param('w') workspaceId: string) {
+    return this.boardService.findAll(workspaceId);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.boardsService.findOne(+id);
+  @BoardRoles(ERole.OWNER, ERole.ADMIN, ERole.MEMBER, ERole.GUEST)
+  findOne(@Param('w') workspaceId: string, @Param('id') id: string) {
+    return this.boardService.findOne(workspaceId, id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBoardDto: UpdateBoardDto) {
-    return this.boardsService.update(+id, updateBoardDto);
+  @BoardRoles(ERole.OWNER, ERole.ADMIN)
+  update(
+    @Param('w') workspaceId: string,
+    @Param('id') id: string,
+    @Body() updateBoardDTO: UpdateBoardDTO,
+  ) {
+    return this.boardService.update(workspaceId, id, updateBoardDTO);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.boardsService.remove(+id);
+  @BoardRoles(ERole.OWNER)
+  remove(@Param('w') workspaceId: string, @Param('id') id: string) {
+    return this.boardService.remove(workspaceId, id);
   }
 }

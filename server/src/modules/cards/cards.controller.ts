@@ -1,34 +1,91 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { CardsService } from './cards.service';
-import { CreateCardDto } from './dto/create-card.dto';
-import { UpdateCardDto } from './dto/update-card.dto';
+import { CreateCardDTO } from './dto/create-card.dto';
+import { UpdateCardDTO } from './dto/update-card.dto';
+import { PayloadUser } from 'src/common/decorators/user.decorator';
+import {
+  BoardRolesGuard,
+  WorkspaceRolesGuard,
+} from 'src/common/guards/roles.guard';
+import { JwtAuthGuard } from 'src/common/guards/jwt.guard';
+import { BoardRoles } from 'src/common/decorators/board-role.decorator';
+import { ERole } from 'src/common/interfaces/shared.interfaces';
 
-@Controller('cards')
+@Controller('w/:w/b/:b/l/:l/cards')
+@UseGuards(JwtAuthGuard, WorkspaceRolesGuard, BoardRolesGuard)
+@BoardRoles(ERole.OWNER, ERole.ADMIN, ERole.MEMBER, ERole.GUEST)
 export class CardsController {
-  constructor(private readonly cardsService: CardsService) {}
+  constructor(private readonly cardService: CardsService) {}
 
   @Post()
-  create(@Body() createCardDto: CreateCardDto) {
-    return this.cardsService.create(createCardDto);
+  create(
+    @Param('w') workspaceId: string,
+    @Param('b') boardId: string,
+    @Param('l') listId: string,
+    @PayloadUser('userId') userId: string,
+    @Body() createCardDTO: CreateCardDTO,
+  ) {
+    return this.cardService.create(
+      userId,
+      workspaceId,
+      boardId,
+      listId,
+      createCardDTO,
+    );
   }
 
   @Get()
-  findAll() {
-    return this.cardsService.findAll();
+  findAll(
+    @Param('w') workspaceId: string,
+    @Param('b') boardId: string,
+    @Param('l') listId: string,
+  ) {
+    return this.cardService.findAll(workspaceId, boardId, listId);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cardsService.findOne(+id);
+  findOne(
+    @Param('w') workspaceId: string,
+    @Param('b') boardId: string,
+    @Param('l') listId: string,
+    @Param('id') id: string,
+  ) {
+    return this.cardService.findOne(workspaceId, boardId, listId, id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {
-    return this.cardsService.update(+id, updateCardDto);
+  update(
+    @Param('w') workspaceId: string,
+    @Param('b') boardId: string,
+    @Param('l') listId: string,
+    @Param('id') id: string,
+    @Body() updateCardDTO: UpdateCardDTO,
+  ) {
+    return this.cardService.update(
+      workspaceId,
+      boardId,
+      listId,
+      id,
+      updateCardDTO,
+    );
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cardsService.remove(+id);
+  remove(
+    @Param('w') workspaceId: string,
+    @Param('b') boardId: string,
+    @Param('l') listId: string,
+    @Param('id') id: string,
+  ) {
+    return this.cardService.remove(workspaceId, boardId, listId, id);
   }
 }

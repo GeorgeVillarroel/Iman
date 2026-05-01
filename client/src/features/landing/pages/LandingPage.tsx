@@ -2,6 +2,7 @@ import React from 'react';
 import { ROUTES } from '@navigation/routes/routes';
 import LandingBackground from '@global/assets/img/LandingBackground.jpg';
 import image from '@global/assets/img/image.png';
+import video from '@global/assets/video/updatedhero-mobile-final.mp4';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {};
@@ -10,53 +11,48 @@ const LandingPage = (props: Props) => {
     const navigate = useNavigate();
 
     return (
-        <div
-            className="h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col items-center pt-20 px-4 overflow-hidden"
-            style={{ backgroundImage: `url(${LandingBackground})` }}
-        >
-            <section className="text-center z-10 max-w-4xl mx-auto mb-16">
-                <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
-                    Kanban-style <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
-                        project management
-                    </span>
-                </h1>
-
-                <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Visualize and organize your work with an intuitive interface
-                    designed for high-performance teams.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button
-                        className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/25 active:scale-95"
-                        onClick={() => navigate(ROUTES.AUTH)}
-                    >
-                        Get started
-                    </button>
-                    <button
-                        className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl backdrop-blur-md border border-white/10 transition-all active:scale-95"
-                        onClick={() => navigate(ROUTES.DASHBOARD)}
-                    >
-                        View demo
-                    </button>
-                </div>
-            </section>
-            <section className="mx-auto">
-                <img className="rounded-2xl" src={image} />
-                {/* <GlassCard className="p-1 md:p-2 border-white/20 shadow-2xl">
-                   
-                    <div className="rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 aspect-[16/9]">
-                       
-                        <div className="p-8 text-slate-400 text-center">
-                            [ Your Kanban Board Component Renders Here ]
-                        </div>
+        <div className="landing-page min-h-screen w-full shrink-0 flex flex-col">
+            <div className="navbar bg-black py-4 flex flex-row justify-between items-center w-full text-start text-white ">
+                <div className="flex gap-8 items-center w-full ">
+                    <div className="logo grow-0 px-4 ">Trello</div>
+                    <div className=" md:flex flex-row gap-6 grow hidden  ">
+                        <div className="div ">features</div>
+                        <div className="div ">solutions</div>
+                        <div className="div ">plans</div>
+                        <div className="div ">pricing</div>
+                        <div className="div ">resources</div>
                     </div>
-                </GlassCard> */}
-            </section>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full" />
+                    <div className="div gap-4 px-4 grow justify-end hidden md:flex  ">
+                        <button>Log in</button>
+                        <button>Get Trello for free</button>
+                    </div>
+                </div>
             </div>
+            <main className="content bg-[#f3f3f5] flex-1 h-full flex justify-center items-end font-play ">
+                <div className="w-full flex flex-col md:flex-row max-w-7xl px-6 pt-20 text-black items-center">
+                    <div className=" self-start px-4 pb-20 gap-6 flex flex-col justify-between font-extrabold flex-1 ">
+                        <div className="text-6xl ">
+                            Capture, organize, and tacle your to-dos from
+                            anywhere.
+                        </div>
+                        <div className="div text-2xl -mt-4 ">
+                            Escape the clutter and chaos-unleash your
+                            productivity with Trello.
+                        </div>
+                        <div className="div">
+                            [Email ] Sign up - it's free!{' '}
+                        </div>
+                        <div className="-mt-4 ">
+                            By entering my email, i acknowledge the Attlasian
+                            Privacy Policy
+                        </div>
+                        <div className="div">Watch video</div>
+                    </div>
+                    <div className=" flex-1 flex items-end ">
+                        <video src={video} autoPlay loop></video>
+                    </div>
+                </div>
+            </main>
         </div>
     );
 };

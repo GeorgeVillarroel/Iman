@@ -10,21 +10,25 @@ const DATAMOCKUP = {
             name: 'George Villarroel',
             icon: Icons.DefaultIcon0,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
         {
             name: 'George Test 1',
             icon: Icons.DefaultIcon1,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
         {
             name: 'Test 2 Villarroel',
             icon: Icons.DefaultIcon2,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
         {
             name: 'Testing 3',
             icon: Icons.DefaultIcon3,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
     ],
     spaces: [
@@ -32,21 +36,25 @@ const DATAMOCKUP = {
             name: 'George Villarroel',
             icon: Icons.DefaultIcon0,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
         {
             name: 'George Test 1',
             icon: Icons.DefaultIcon1,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
         {
             name: 'Test 2 Villarroel',
             icon: Icons.DefaultIcon2,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
         {
             name: 'Testing 3',
             icon: Icons.DefaultIcon3,
             owner: 'George Villarroel',
+            visibility: 'Private',
         },
     ],
 };

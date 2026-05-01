@@ -1,16 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 
-html,
+/* Josh Comeau's Modern Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
+/* html,
 body,
 #root {
     min-height: 100%;
     color: var(--color-neutral-50);
-}
+} */
 
 @theme {
-    --font-sans: 'Play', ui-sans-serif, system-ui, sans-serif;
-    --font-Play: 'Play';
-    --font-family-secondary: 'Play';
+    --font-sans: 'Roboto', system-ui, sans-serif;
+    --font-play: 'Roboto', sans-serif;
+    --font-family-secondary: 'Roboto';
 
     --font-size-48: 48px;
     --font-size-40: 40px;
@@ -106,7 +154,7 @@ body,
     --color-green-800: #16653f;
     --color-green-900: #052e1c;
 }
-
+/* 
 h1 {
     @apply text-5xl font-semibold leading-[100%] -tracking-[1.5px];
 }
@@ -130,7 +178,7 @@ h5 {
 h6 {
     @apply text-lg font-semibold leading-[130%] tracking-normal;
 }
-
+ */
 /* Estilos para Form*/
 .font-form-large {
     font-family: var(--font-family-secondary);

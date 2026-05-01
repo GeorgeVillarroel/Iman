@@ -8,6 +8,7 @@ export interface IWorkspaceCardHeader {
     name: string;
     owner: string;
     icon: string;
+    visibility: string;
 }
 
 const SpaceComponent = ({ spaces }: { spaces: IWorkspaceCardHeader }) => {
@@ -15,13 +16,20 @@ const SpaceComponent = ({ spaces }: { spaces: IWorkspaceCardHeader }) => {
 
     return (
         <div
-            className="bg-amber-950 flex justify-around content-around w-full "
+            className=" p-8 h-48 text-white min-w-60 w-full max-w-229 rounded-xl flex justify-start items-center gap-3 "
             onClick={() => navigate(`${ROUTES.WORKSPACE}/${spaces.name}`)}
         >
-            <img src={spaces.icon} />
-            <div className="flex flex-col">
-                <p className="primary">{spaces.name}</p>
-                <p className="secondary">{spaces.owner}</p>
+            <div className="w-15 h-15 rounded-md bg-[#00000000] border-none ">
+                <img
+                    className="h-full min-w-15 bg-[#43bc89] active:outline-2 active:outline-white rounded-md border-none "
+                    src={spaces.icon}
+                />
+            </div>
+            <div className="w-full flex flex-col justify-center ">
+                <h2 className="text-xl font-bold text-[#CECFD2] ">
+                    {spaces.name}
+                </h2>
+                <p className="text-xs text-[#A9ABAF]">{spaces.visibility}</p>
             </div>
         </div>
     );

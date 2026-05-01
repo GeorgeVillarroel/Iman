@@ -1,26 +1,66 @@
-import { Injectable } from '@nestjs/common';
-import { CreateWorkspaceDto } from './dto/create-workspace.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateWorkspaceDTO } from './dto/create-workspace.dto';
 import { UpdateWorkspaceDto } from './dto/update-workspace.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Workspace } from './schemas/workspace.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class WorkspacesService {
-  create(createWorkspaceDto: CreateWorkspaceDto) {
-    return 'This action adds a new workspace';
+  constructor(
+    @InjectModel(Workspace.name) private workspaceModel: Model<Workspace>,
+  ) {}
+  async create(
+    userId: string,
+    createWorkspaceDto: CreateWorkspaceDTO,
+  ): Promise<Workspace> {
+    const workspace = new this.workspaceModel({
+      ...createWorkspaceDto,
+      ownerId: userId,
+      members: [{ userId: userId, role: 'OWNER', joinedAt: new Date() }],
+    });
+
+    return await workspace.save();
   }
 
-  findAll() {
-    return `This action returns all workspaces`;
+  async findAll(): Promise<Workspace[]> {
+    const workspace = await this.workspaceModel.find();
+    if (!workspace) {
+      throw new NotFoundException('not found');
+    }
+    return workspace;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} workspace`;
+  async findOne(id: string): Promise<Workspace> {
+    const workspace = await this.workspaceModel.findById(id);
+    if (!workspace) {
+      console.log(workspace);
+      throw new NotFoundException('not found');
+    }
+    return workspace;
   }
 
-  update(id: number, updateWorkspaceDto: UpdateWorkspaceDto) {
-    return `This action updates a #${id} workspace`;
+  async update(
+    id: string,
+    updateWorkspaceDto: UpdateWorkspaceDto,
+  ): Promise<Workspace> {
+    const workspace = await this.workspaceModel.findByIdAndUpdate(
+      id,
+      updateWorkspaceDto,
+      { returnDocument: 'after' },
+    );
+    if (!workspace) {
+      throw new NotFoundException('not found');
+    }
+    return workspace;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} workspace`;
+  async remove(id: string): Promise<Workspace> {
+    const workspace = await this.workspaceModel.findByIdAndDelete(id);
+    if (!workspace) {
+      throw new NotFoundException('not found');
+    }
+
+    return workspace;
   }
 }

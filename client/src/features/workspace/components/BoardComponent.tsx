@@ -13,11 +13,17 @@ const BoardComponent = ({ board }: { board: IBoardCardHeader }) => {
 
     return (
         <div
-            className="bg-amber-950 h-40 flex flex-col justify-around content-around w-full "
+            className=" bg-[#1f1f21] shadow-[0_0_0_1px_rgba(0,0,0,0),0_1px_1px_0_rgba(1,4,4,0.5),0_0_1px_0_rgba(1,4,4,0.5)] flex flex-col w-full rounded-lg overflow-hidden "
             onClick={() => navigate(`${ROUTES.WORKSPACE}/${board.name}`)}
         >
-            <img className="h-32" src={board.icon} />
-            <p className="h-8 primary">{board.name}</p>
+            <div className="aspect-video w-full h-18 flex flex-col justify-center ">
+                <img className="w-full h-18 object-cover " src={board.icon} />
+            </div>
+            <div className="p-2">
+                <p className="p-0 min-h-5 max-h-10 leading-tight line-clamp-2 bg-[#1f1f21] text-[#CECFD2] font-play text-sm font-normal ">
+                    {board.name}
+                </p>
+            </div>
         </div>
     );
 };
